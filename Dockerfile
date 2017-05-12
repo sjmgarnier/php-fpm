@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
   libpng12-dev \
   libpq-dev \
   libxml2-dev \
+  libpcre3-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
@@ -45,11 +46,6 @@ RUN set -ex \
  && pecl install memcached \
  && pecl install redis \
  && docker-php-ext-enable apcu redis memcached
-
-#COPY docker-entrypoint.sh /entrypoint.sh
-
-#ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["php-fpm"]
 
 RUN groupadd -r ttrss && useradd -r -g ttrss ttrss
 CMD ["/usr/bin/supervisord"]
