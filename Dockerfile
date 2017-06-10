@@ -1,4 +1,4 @@
-FROM php:7.0-fpm
+FROM php:7.1-fpm
 
 COPY src/php.ini /usr/local/etc/php/
 COPY src/www.conf /etc/php-fpm.d/ 
