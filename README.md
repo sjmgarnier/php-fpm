@@ -1,5 +1,7 @@
 # php-fpm 7.1x
 
+Nextcloud 12 can only handle php up to this version 7.1x.
+
 This php-fpm container is meant to be used together with a webserver and database container.
 It serves the service internally on port 9000.
 Be sure to create a mail.rc config file on the host and mount it into the php-fpm container, so that you are able to send emails from within.
