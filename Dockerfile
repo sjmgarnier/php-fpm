@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
   libfreetype6-dev \
   libicu-dev \
   libjpeg-dev \
+  libjpeg62-turbo-dev \
   libldap2-dev \
   libmcrypt-dev \
   libmemcached-dev \
@@ -27,7 +28,7 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
-RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
   && docker-php-ext-install gd exif intl mbstring ldap opcache mysqli pdo_mysql pdo_pgsql pgsql zip
 
