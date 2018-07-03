@@ -1,6 +1,6 @@
 # php-fpm 7.2x
 
-Nextcloud 12 can only handle php up to this version 7.1x. (use the explicit branch fezzz/php-fpm:7.1)
+Nextcloud 12 can only handle php up to version 7.1x. (use the explicit branch fezzz/php-fpm:7.1)
 Nextcloud 13 can handle php7.2x (use: fezzz/php-fpm or explicitly fezzz/php-fpm:7.2)
 
 This php-fpm container is meant to be used together with a webserver and database container.
