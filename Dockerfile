@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 # Dockerfile author / maintainer
 MAINTAINER Felix Stellmacher <docker@istsotoll.de>
 
