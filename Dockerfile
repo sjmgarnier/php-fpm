@@ -20,12 +20,12 @@ RUN apt-get update && apt-get install -y \
   libjpeg62-turbo-dev \
   libldap2-dev \
   libmcrypt-dev \
-  libmemcached-dev \
   libpng-dev \
   libpq-dev \
   libxml2-dev \
   libpcre3-dev \
   libzip-dev \
+  zlib1g-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
@@ -45,13 +45,24 @@ RUN { \
     echo 'opcache.fast_shutdown=1'; \
     echo 'opcache.enable_cli=1'; \
   } > /usr/local/etc/php/conf.d/opcache-recommended.ini
-
+  
 # PECL extensions
 RUN set -ex \
  && pecl install APCu \
- && pecl install memcached \
  && pecl install redis \
- && docker-php-ext-enable apcu redis memcached
+ && docker-php-ext-enable apcu redis
+ 
+# Install memcached
+# Using master branch as workaround, as memcache is not yet released for php7
+RUN set -ex \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y libmemcached-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && MEMCACHED="`mktemp -d`" \
+    && curl -skL https://github.com/php-memcached-dev/php-memcached/archive/master.tar.gz | tar zxf - --strip-components 1 -C $MEMCACHED \
+    && docker-php-ext-configure $MEMCACHED \
+    && docker-php-ext-install $MEMCACHED \
+    && rm -rf $MEMCACHED
 
 RUN groupadd -r ttrss && useradd -r -g ttrss ttrss
 CMD ["/usr/bin/supervisord"]
