@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
   libpq-dev \
   libxml2-dev \
   libpcre3-dev \
+  libzip-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
