@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
   supervisor \
   sudo \
   sendmail \
-  heirloom-mailx \
+  s-nail \
   mariadb-client \
   bzip2 \
   libcurl4-openssl-dev \
@@ -27,6 +27,8 @@ RUN apt-get update && apt-get install -y \
   libzip-dev \
   zlib1g-dev \
   && rm -rf /var/lib/apt/lists/*
+
+RUN cd /usr/bin && ln -s s-nail heirloom-mailx
 
 # https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
