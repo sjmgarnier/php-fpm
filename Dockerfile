@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
 RUN cd /usr/bin && ln -s s-nail heirloom-mailx
 
 # https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
-RUN docker-php-ext-configure gd --with-freetype --with-png --with-jpeg \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
   && docker-php-ext-install gd exif intl mbstring ldap opcache mysqli pdo_mysql pdo_pgsql pgsql zip
 
