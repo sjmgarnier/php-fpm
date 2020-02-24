@@ -26,6 +26,8 @@ RUN apt-get update && apt-get install -y \
   libpcre3-dev \
   libzip-dev \
   zlib1g-dev \
+  libonig-dev \
+  graphviz \
   && rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/bin && ln -s s-nail heirloom-mailx
