@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 # Dockerfile author / maintainer
 MAINTAINER Felix Stellmacher <docker@istsotoll.de>
 
@@ -26,12 +26,14 @@ RUN apt-get update && apt-get install -y \
   libpcre3-dev \
   libzip-dev \
   zlib1g-dev \
+  libonig-dev \
+  graphviz \
   && rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/bin && ln -s s-nail heirloom-mailx
 
 # https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
   && docker-php-ext-install gd exif intl mbstring ldap opcache mysqli pdo_mysql pdo_pgsql pgsql zip
 
