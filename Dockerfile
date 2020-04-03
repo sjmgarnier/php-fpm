@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
 # Dockerfile author / maintainer
-MAINTAINER Felix Stellmacher <docker@istsotoll.de>
+MAINTAINER Simon Garnier <simon.garnier@gmail.com>
 
 COPY src/php.ini /usr/local/etc/php/
 COPY src/www.conf /etc/php-fpm.d/ 
